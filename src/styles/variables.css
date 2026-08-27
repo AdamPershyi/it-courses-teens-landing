@@ -1,0 +1,25 @@
+:root {
+  --color-white: #ffffff;
+  --color-text: #ffffff;
+  --color-accent: #fd5f2b;
+  --color-footer-bg: #2a2d34;
+  --color-menu-bg: #f8fafc;
+  --color-menu-text: #484c56;
+  --color-hero-placeholder: #3f3f3f;
+  --color-glass-from: rgba(190, 194, 197, 0.27);
+  --color-glass-to: rgba(190, 194, 197, 0.112);
+  --color-glass-soft-from: rgba(190, 194, 197, 0.12);
+  --color-glass-soft-to: rgba(190, 194, 197, 0.05);
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  --radius-pill: 20px;
+  --radius-button: 25px;
+
+  --header-height: 44px;
+
+  --pad-mobile: 16px;
+  --pad-tablet: 68px;
+  --pad-desktop: 68px;
+  --pad-footer-desktop: 210px;
+}

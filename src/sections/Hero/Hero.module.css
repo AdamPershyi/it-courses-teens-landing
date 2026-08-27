@@ -1,0 +1,23 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 679px;
+  background-image: url('../../img/image-hero-mob.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    min-height: 803px;
+    background-image: url('../../img/image-hero-tab.png');
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero {
+    min-height: 828px;
+    background-image: url('../../img/image-hero-desc.png');
+  }
+}
