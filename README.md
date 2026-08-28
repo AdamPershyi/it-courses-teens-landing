@@ -35,9 +35,9 @@ npm run lint     # перевірка коду
 src/
   assets/icons/   # SVG з Figma (бургер, соцмережі, телефон, пошта)
   img/            # фото секцій: *-mob / *-tab / *-desc
-  components/     # Header, Footer, Button, BurgerMenu
-  data/           # тексти лінків навігації й соцмереж
-  sections/       # секції лендінгу (Hero, курси, FAQ)
+  components/     # Header, Footer, Button, BurgerMenu, AccordionItem
+  data/           # тексти лінків, FAQ
+  sections/       # Hero, Faq
   styles/         # глобальні стилі й токени
   App.tsx         # збирає сторінку з секцій
 ```

@@ -5,6 +5,11 @@
   --color-footer-bg: #2a2d34;
   --color-menu-bg: #f8fafc;
   --color-menu-text: #484c56;
+  --color-faq-bg: #ebedef;
+  --color-faq-text: #2a2d34;
+  --color-faq-border: #ffd233;
+  --shadow-faq:
+    0 2px 8px -1px rgb(12 12 13 / 5%), 0 1px 7px -1px rgb(89 66 65 / 5%);
   --color-hero-placeholder: #3f3f3f;
   --color-glass-from: rgba(190, 194, 197, 0.27);
   --color-glass-to: rgba(190, 194, 197, 0.112);
