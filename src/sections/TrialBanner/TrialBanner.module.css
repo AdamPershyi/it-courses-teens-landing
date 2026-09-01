@@ -1,0 +1,101 @@
+﻿.banner {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  padding: 0 16px;
+  overflow: hidden;
+  background-color: #fe9472;
+  color: #484c56;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+}
+
+.inner {
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 329px);
+  max-width: 1296px;
+  min-height: 148px;
+  margin-inline: auto;
+  padding: 18px 12px;
+  background-color: var(--color-white);
+  border-radius: 48px;
+}
+
+.inner p {
+  width: min(100%, 295px);
+  margin: 0;
+  color: #2a2d34;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+@media (min-width: 768px) {
+  .banner {
+    justify-content: center;
+    min-height: 330px;
+    padding: 0 56px;
+  }
+
+  .inner {
+    width: min(100%, 657px);
+    min-height: 179px;
+    margin-inline: auto;
+    padding: 28px 24px;
+  }
+
+  .inner p {
+    width: min(100%, 609px);
+  }
+}
+
+@media (min-width: 1440px) {
+  .banner {
+    display: block;
+    min-height: auto;
+    padding: 44px 68px;
+    background-color: #f8fafc;
+    background-image: repeating-linear-gradient(
+      0deg,
+      rgb(253 95 43 / 30%) 0,
+      rgb(253 95 43 / 30%) 1px,
+      transparent 1px,
+      transparent 7px
+    );
+    background-size: auto;
+  }
+
+  .background {
+    display: none;
+  }
+
+  .inner {
+    width: auto;
+    min-height: 88px;
+    padding: 20px 24px;
+    background-color: var(--color-white);
+    border-radius: 20px;
+  }
+
+  .inner p {
+    font-size: 20px;
+    line-height: 1.21;
+  }
+}
