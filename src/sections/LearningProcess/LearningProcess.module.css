@@ -1,6 +1,6 @@
 .learning {
   overflow: hidden;
-  padding: 32px 0 32px 16px;
+  padding: 29px 0 32px 16px;
   background-color: #fefefe;
   color: #484c56;
 }
@@ -27,12 +27,22 @@
   line-height: 1;
 }
 
+
 .gridWrap {
   position: relative;
 }
 
 .illustration {
   display: none;
+.decor {
+  display: none;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+
   pointer-events: none;
 }
 
@@ -40,7 +50,10 @@
   display: flex;
   gap: 24px;
   margin: 0;
-  padding: 0 16px 8px 0;
+  padding: 80px 16px 8px 0;
+  position: relative;
+  top: -80px;
+  margin-bottom: -80px;
   list-style: none;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -51,19 +64,34 @@
   display: none;
 }
 
+.cardWrap {
+  position: relative;
+  flex: 0 0 auto;
+  width: 330px;
+  scroll-snap-align: start;
+}
+
 .card {
   position: relative;
   display: flex;
-  flex: 0 0 auto;
   flex-direction: column;
   justify-content: flex-end;
-  width: 306px;
+  width: 100%;
   min-height: 215px;
-  padding: 28px 18px;
+  padding: 28px 19px;
   overflow: hidden;
   border: 1px solid #b6b7bb;
   border-radius: 24px;
-  scroll-snap-align: start;
+}
+
+.cardDecor {
+  position: absolute;
+  top: -80px;
+  right: -45px;
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  pointer-events: none;
 }
 
 .card.mint {
@@ -148,12 +176,21 @@
     font-size: 32px;
   }
 
-  .list {
-    padding-right: 68px;
+
+
+  .decor {
+    display: block;
   }
 
-  .card {
-    width: 330px;
+  .list {
+    padding: 0 68px 8px 0;
+    position: static;
+    top: auto;
+    margin-bottom: 0;
+  }
+
+  .cardDecor {
+    display: none;
   }
 }
 
@@ -202,6 +239,7 @@
     padding: 0;
     overflow: visible;
   }
+
 
   .card {
     position: absolute;
@@ -300,5 +338,9 @@
 
   .titleBreak {
     display: inline;
+
+  .cardWrap {
+    width: calc((100% - 48px) / 3);
+
   }
 }

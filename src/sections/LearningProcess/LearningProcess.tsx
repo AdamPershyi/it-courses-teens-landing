@@ -1,8 +1,13 @@
+import { useLayoutEffect, useRef } from 'react'
 import mintDecor from '@/assets/icons/figma-vector.svg'
 import sunDecor from '@/assets/icons/figma-vector-1.svg'
 import paginationDots from '@/assets/icons/figma-offer-banner.svg'
 import learningImage from '@/img/how-learning-desktop@2x.png'
+import learningImageMobile from '@/img/how-learning-mobile@2x.png'
 import styles from './LearningProcess.module.css'
+
+const MOBILE_MEDIA_QUERY = '(max-width: 767px)'
+const INITIAL_MOBILE_CARD_INDEX = 2
 
 const STEPS = [
   {
@@ -33,6 +38,19 @@ const STEPS = [
 ] as const
 
 export function LearningProcess() {
+  const listRef = useRef<HTMLUListElement>(null)
+
+  useLayoutEffect(() => {
+    const list = listRef.current
+    if (!list || !window.matchMedia(MOBILE_MEDIA_QUERY).matches) return
+
+    const initialCard = list.children[INITIAL_MOBILE_CARD_INDEX] as
+      | HTMLElement
+      | undefined
+
+    initialCard?.scrollIntoView({ inline: 'start', block: 'nearest' })
+  }, [])
+
   return (
     <section className={styles.learning} id="learning">
       <div className={styles.inner}>
@@ -41,46 +59,72 @@ export function LearningProcess() {
         </div>
 
         <div className={styles.gridWrap}>
-          <ul className={styles.list}>
+          <ul className={styles.list} ref={listRef}>
             {STEPS.map((step) => (
-              <li
-                className={`${styles.card} ${styles[step.variant]}`}
-                key={step.title}
-              >
-                {step.variant === 'mint' && (
-                  <img alt="" className={styles.mintVector} src={mintDecor} />
-                )}
-                {step.variant === 'sun' && (
-                  <img alt="" className={styles.sunVector} src={sunDecor} />
-                )}
-                <div className={styles.cardText}>
-                  <h3>
-                    {step.title === 'Усе для старту в одному місці' ? (
-                      <>
-                        Усе для старту в одному
-                        <br className={styles.titleBreak} /> місці
-                      </>
-                    ) : step.title === 'Навчання онлайн — комфортно з будь-якого місця' ? (
-                      <>
-                        Навчання онлайн —<br className={styles.titleBreak} /> комфортно
-                        з будь-якого місця
-                      </>
-                    ) : step.title === 'Навчаємось у невеликих групах — увага кожному' ? (
-                      <>
-                        Навчаємось у невеликих
-                        <br className={styles.titleBreak} /> групах — увага кожному
-                      </>
-                    ) : (
-                      step.title
-                    )}
-                  </h3>
-                  <p>{step.text}</p>
+              <li className={styles.cardWrap} key={step.title}>
+                <div className={`${styles.card} ${styles[step.variant]}`}>
+                  {step.variant === 'mint' && (
+                    <img
+                      alt=""
+                      className={styles.mintVector}
+                      src={mintDecor}
+                    />
+                  )}
+
+                  {step.variant === 'sun' && (
+                    <img
+                      alt=""
+                      className={styles.sunVector}
+                      src={sunDecor}
+                    />
+                  )}
+
+                  <div className={styles.cardText}>
+                    <h3>
+                      {step.title === 'Усе для старту в одному місці' ? (
+                        <>
+                          Усе для старту в одному
+                          <br className={styles.titleBreak} /> місці
+                        </>
+                      ) : step.title ===
+                        'Навчання онлайн — комфортно з будь-якого місця' ? (
+                        <>
+                          Навчання онлайн —
+                          <br className={styles.titleBreak} /> комфортно з
+                          будь-якого місця
+                        </>
+                      ) : step.title ===
+                        'Навчаємось у невеликих групах — увага кожному' ? (
+                        <>
+                          Навчаємось у невеликих
+                          <br className={styles.titleBreak} /> групах — увага
+                          кожному
+                        </>
+                      ) : (
+                        step.title
+                      )}
+                    </h3>
+
+                    <p>{step.text}</p>
+                  </div>
                 </div>
+
+                {step.variant === 'sun' && (
+                  <img
+                    alt=""
+                    className={styles.cardDecor}
+                    src={learningImageMobile}
+                  />
+                )}
               </li>
             ))}
           </ul>
 
-          <img alt="" className={styles.illustration} src={learningImage} />
+          <img
+            alt=""
+            className={styles.illustration}
+            src={learningImage}
+          />
         </div>
 
         <img alt="" className={styles.pagination} src={paginationDots} />
