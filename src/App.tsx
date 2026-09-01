@@ -1,6 +1,7 @@
 import { Header } from '@/components/Header/Header'
 import { Footer } from '@/components/Footer/Footer'
 import { Hero } from '@/sections/Hero/Hero'
+import { Faq } from '@/sections/Faq/Faq'
 import { About } from '@/sections/About/About'
 import { Directions } from '@/sections/Directions/Directions'
 import { TrialBanner } from '@/sections/TrialBanner/TrialBanner'
@@ -17,6 +18,7 @@ function App() {
         <Directions />
         <TrialBanner />
         <LearningProcess />
+        <Faq />
       </main>
       <Footer />
     </div>
