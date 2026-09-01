@@ -1,0 +1,188 @@
+.learning {
+  overflow: hidden;
+  padding: 32px 0 32px 16px;
+  background-color: #fefefe;
+  color: #484c56;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1296px;
+  margin-inline: auto;
+}
+
+.header {
+  position: relative;
+  padding-right: 16px;
+}
+
+.header h2 {
+  max-width: 220px;
+  margin: 0;
+  color: #2a2d34;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.decor {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.list {
+  display: flex;
+  gap: 24px;
+  margin: 0;
+  padding: 0 16px 8px 0;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.list::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 306px;
+  min-height: 215px;
+  padding: 28px 18px;
+  overflow: hidden;
+  border: 1px solid #b6b7bb;
+  border-radius: 24px;
+  scroll-snap-align: start;
+}
+
+.card.mint {
+  background-color: #daecea;
+}
+
+.card.white {
+  background-color: #fefefe;
+}
+
+.card.sun {
+  background-color: #ffefb7;
+}
+
+.mintVector,
+.sunVector {
+  position: absolute;
+  pointer-events: none;
+}
+
+.mintVector {
+  top: -24px;
+  right: -18px;
+  width: 130px;
+  height: 124px;
+}
+
+.sunVector {
+  top: -40px;
+  right: -50px;
+  width: 160px;
+  height: 168px;
+}
+
+.cardText {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cardText h3,
+.cardText p {
+  margin: 0;
+}
+
+.cardText h3 {
+  color: #2a2d34;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.cardText p {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.21;
+}
+
+.pagination {
+  display: block;
+  width: 106px;
+  height: 13px;
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  .learning {
+    padding: 48px 0 48px 68px;
+  }
+
+  .header {
+    padding-right: 68px;
+  }
+
+  .header h2 {
+    max-width: none;
+    font-size: 32px;
+  }
+
+  .decor {
+    width: 120px;
+    height: 120px;
+  }
+
+  .list {
+    padding-right: 68px;
+  }
+
+  .card {
+    width: 330px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .learning {
+    padding: 68px;
+  }
+
+  .inner {
+    gap: 32px;
+  }
+
+  .header {
+    padding-right: 0;
+  }
+
+  .header h2 {
+    font-size: 48px;
+  }
+
+  .list {
+    flex-wrap: wrap;
+    padding-right: 0;
+    overflow: visible;
+  }
+
+  .card {
+    width: calc((100% - 48px) / 3);
+  }
+}
