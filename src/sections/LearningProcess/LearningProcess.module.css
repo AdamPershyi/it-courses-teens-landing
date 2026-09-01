@@ -27,13 +27,12 @@
   line-height: 1;
 }
 
-.decor {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  width: 96px;
-  height: 96px;
-  object-fit: contain;
+.gridWrap {
+  position: relative;
+}
+
+.illustration {
+  display: none;
   pointer-events: none;
 }
 
@@ -111,6 +110,10 @@
   margin: 0;
 }
 
+.titleBreak {
+  display: none;
+}
+
 .cardText h3 {
   color: #2a2d34;
   font-weight: 600;
@@ -145,11 +148,6 @@
     font-size: 32px;
   }
 
-  .decor {
-    width: 120px;
-    height: 120px;
-  }
-
   .list {
     padding-right: 68px;
   }
@@ -161,28 +159,146 @@
 
 @media (min-width: 1440px) {
   .learning {
-    padding: 68px;
+    padding: 0;
   }
 
   .inner {
-    gap: 32px;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    gap: 38px;
+    max-width: 1299px;
+    padding: 86px 72px;
+    background: #fefefe;
   }
 
   .header {
     padding-right: 0;
+    text-align: center;
   }
 
   .header h2 {
+    max-width: none;
+    font-weight: 700;
     font-size: 48px;
+    line-height: 1.1;
+  }
+
+  .pagination {
+    display: none;
+  }
+
+  .gridWrap {
+    width: 100%;
   }
 
   .list {
-    flex-wrap: wrap;
-    padding-right: 0;
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 700px;
+    margin: 0;
+    padding: 0;
     overflow: visible;
   }
 
   .card {
-    width: calc((100% - 48px) / 3);
+    position: absolute;
+    z-index: 1;
+    width: auto;
+    min-height: 0;
+    padding: 24px;
+  }
+
+  /* left column: green card */
+  .list > li:nth-child(1) {
+    top: 0;
+    left: 0;
+    width: 400px;
+    min-height: 390px;
+    z-index: 3;
+  }
+
+  /* top-right card */
+  .list > li:nth-child(2) {
+    top: 0;
+    left: 765px;
+    width: 390px;
+    min-height: 260px;
+    z-index: 3;
+  }
+
+  /* yellow card, sits behind the illustration and the middle-right card */
+  .list > li:nth-child(3) {
+    top: 530px;
+    left: 375px;
+    width: 780px;
+    min-height: 150px;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  /* middle-right card, overlaps on top of the illustration and the yellow card */
+  .list > li:nth-child(4) {
+    top: 270px;
+    left: 645px;
+    width: 510px;
+    min-height: 255px;
+    z-index: 4;
+  }
+
+  /* left column: white card, directly below the green card, same width */
+  .list > li:nth-child(5) {
+    top: 410px;
+    left: 0;
+    width: 400px;
+    min-height: 280px;
+    z-index: 3;
+  }
+
+  .cardText {
+    gap: 12px;
+  }
+
+  .cardText h3 {
+    font-size: 27px;
+    line-height: 1.2;
+  }
+
+  .cardText p {
+    font-size: 19px;
+    line-height: 1.3;
+  }
+
+  .mintVector {
+    top: -30px;
+    right: auto;
+    left: -30px;
+    width: 280px;
+    height: 266px;
+  }
+
+  .sunVector {
+    top: auto;
+    right: -20px;
+    bottom: -40px;
+    width: 180px;
+    height: 188px;
+  }
+
+  .illustration {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 345px;
+    width: 500px;
+    height: auto;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .titleBreak {
+    display: inline;
   }
 }

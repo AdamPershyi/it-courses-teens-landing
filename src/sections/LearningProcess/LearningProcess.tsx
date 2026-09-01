@@ -38,28 +38,50 @@ export function LearningProcess() {
       <div className={styles.inner}>
         <div className={styles.header}>
           <h2>Як відбувається навчання?</h2>
-          <img alt="" className={styles.decor} src={learningImage} />
         </div>
 
-        <ul className={styles.list}>
-          {STEPS.map((step) => (
-            <li
-              className={`${styles.card} ${styles[step.variant]}`}
-              key={step.title}
-            >
-              {step.variant === 'mint' && (
-                <img alt="" className={styles.mintVector} src={mintDecor} />
-              )}
-              {step.variant === 'sun' && (
-                <img alt="" className={styles.sunVector} src={sunDecor} />
-              )}
-              <div className={styles.cardText}>
-                <h3>{step.title}</h3>
-                <p>{step.text}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <div className={styles.gridWrap}>
+          <ul className={styles.list}>
+            {STEPS.map((step) => (
+              <li
+                className={`${styles.card} ${styles[step.variant]}`}
+                key={step.title}
+              >
+                {step.variant === 'mint' && (
+                  <img alt="" className={styles.mintVector} src={mintDecor} />
+                )}
+                {step.variant === 'sun' && (
+                  <img alt="" className={styles.sunVector} src={sunDecor} />
+                )}
+                <div className={styles.cardText}>
+                  <h3>
+                    {step.title === 'Усе для старту в одному місці' ? (
+                      <>
+                        Усе для старту в одному
+                        <br className={styles.titleBreak} /> місці
+                      </>
+                    ) : step.title === 'Навчання онлайн — комфортно з будь-якого місця' ? (
+                      <>
+                        Навчання онлайн —<br className={styles.titleBreak} /> комфортно
+                        з будь-якого місця
+                      </>
+                    ) : step.title === 'Навчаємось у невеликих групах — увага кожному' ? (
+                      <>
+                        Навчаємось у невеликих
+                        <br className={styles.titleBreak} /> групах — увага кожному
+                      </>
+                    ) : (
+                      step.title
+                    )}
+                  </h3>
+                  <p>{step.text}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+
+          <img alt="" className={styles.illustration} src={learningImage} />
+        </div>
 
         <img alt="" className={styles.pagination} src={paginationDots} />
       </div>
