@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef } from 'react'
 import mintDecor from '@/assets/icons/figma-vector.svg'
+import mintDecorTablet from '@/assets/icons/figma-vector-tablet.svg'
 import sunDecor from '@/assets/icons/figma-vector-1.svg'
 import paginationDots from '@/assets/icons/figma-offer-banner.svg'
 import learningImage from '@/img/how-learning-desktop@2x.png'
@@ -47,42 +48,93 @@ export function LearningProcess() {
     const initialCard = list.children[INITIAL_MOBILE_CARD_INDEX] as
       | HTMLElement
       | undefined
-    initialCard?.scrollIntoView({ inline: 'start', block: 'nearest' })
+    if (!initialCard) return
+
+    const targetScrollLeft =
+      initialCard.offsetLeft - (list.clientWidth - initialCard.clientWidth) / 2
+
+    list.scrollTo({ left: targetScrollLeft })
   }, [])
 
   return (
     <section className={styles.learning} id="learning">
+      <img
+        alt=""
+        className={styles.mintVectorTablet}
+        src={mintDecorTablet}
+      />
+
+      <img
+        alt=""
+        className={styles.decorMobile}
+        src={learningImageMobile}
+      />
+
       <div className={styles.inner}>
         <div className={styles.header}>
           <h2>Як відбувається навчання?</h2>
-          <img alt="" className={styles.decor} src={learningImage} />
         </div>
 
-        <ul className={styles.list} ref={listRef}>
-          {STEPS.map((step) => (
-            <li className={styles.cardWrap} key={step.title}>
-              <div className={`${styles.card} ${styles[step.variant]}`}>
-                {step.variant === 'mint' && (
-                  <img alt="" className={styles.mintVector} src={mintDecor} />
-                )}
-                {step.variant === 'sun' && (
-                  <img alt="" className={styles.sunVector} src={sunDecor} />
-                )}
-                <div className={styles.cardText}>
-                  <h3>{step.title}</h3>
-                  <p>{step.text}</p>
+        <div className={styles.gridWrap}>
+          <ul className={styles.list} ref={listRef}>
+            {STEPS.map((step) => (
+              <li className={styles.cardWrap} key={step.title}>
+                <div className={`${styles.card} ${styles[step.variant]}`}>
+                  {step.variant === 'mint' && (
+                    <img
+                      alt=""
+                      className={styles.mintVector}
+                      src={mintDecor}
+                    />
+                  )}
+
+                  {step.variant === 'sun' && (
+                    <img
+                      alt=""
+                      className={styles.sunVector}
+                      src={sunDecor}
+                    />
+                  )}
+
+                  <div className={styles.cardText}>
+                    <h3>
+                      {step.title === 'Усе для старту в одному місці' ? (
+                        <>
+                          Усе для старту в одному
+                          <br className={styles.titleBreak} /> місці
+                        </>
+                      ) : step.title ===
+                        'Навчання онлайн — комфортно з будь-якого місця' ? (
+                        <>
+                          Навчання онлайн —
+                          <br className={styles.titleBreak} /> комфортно з
+                          будь-якого місця
+                        </>
+                      ) : step.title ===
+                        'Навчаємось у невеликих групах — увага кожному' ? (
+                        <>
+                          Навчаємось у невеликих
+                          <br className={styles.titleBreak} /> групах — увага
+                          кожному
+                        </>
+                      ) : (
+                        step.title
+                      )}
+                    </h3>
+
+                    <p>{step.text}</p>
+                  </div>
                 </div>
-              </div>
-              {step.variant === 'sun' && (
-                <img
-                  alt=""
-                  className={styles.cardDecor}
-                  src={learningImageMobile}
-                />
-              )}
-            </li>
-          ))}
-        </ul>
+              </li>
+            ))}
+          </ul>
+
+          <img
+            alt=""
+            className={styles.illustration}
+            src={learningImage}
+          />
+        </div>
 
         <img alt="" className={styles.pagination} src={paginationDots} />
       </div>

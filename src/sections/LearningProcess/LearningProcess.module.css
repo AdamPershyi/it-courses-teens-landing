@@ -1,4 +1,5 @@
 .learning {
+  position: relative;
   overflow: hidden;
   padding: 29px 0 32px 16px;
   background-color: #fefefe;
@@ -27,14 +28,13 @@
   line-height: 1;
 }
 
-.decor {
+
+.gridWrap {
+  position: relative;
+}
+
+.illustration {
   display: none;
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  width: 120px;
-  height: 120px;
-  object-fit: contain;
   pointer-events: none;
 }
 
@@ -42,7 +42,9 @@
   display: flex;
   gap: 24px;
   margin: 0;
-  padding: 80px 16px 8px 0;
+  margin-left: -16px;
+  width: calc(100% + 16px);
+  padding: 80px 16px 8px 16px;
   position: relative;
   top: -80px;
   margin-bottom: -80px;
@@ -59,8 +61,8 @@
 .cardWrap {
   position: relative;
   flex: 0 0 auto;
-  width: 330px;
-  scroll-snap-align: start;
+  width: calc(100vw - 32px);
+  scroll-snap-align: center;
 }
 
 .card {
@@ -86,6 +88,17 @@
   pointer-events: none;
 }
 
+.decorMobile {
+  position: absolute;
+  top: 20px;
+  right: -49px;
+  width: 128px;
+  height: 128px;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 2;
+}
+
 .card.mint {
   background-color: #daecea;
 }
@@ -99,6 +112,7 @@
 }
 
 .mintVector,
+.mintVectorTablet,
 .sunVector {
   position: absolute;
   pointer-events: none;
@@ -109,6 +123,10 @@
   right: -18px;
   width: 130px;
   height: 124px;
+}
+
+.mintVectorTablet {
+  display: none;
 }
 
 .sunVector {
@@ -128,6 +146,10 @@
 .cardText h3,
 .cardText p {
   margin: 0;
+}
+
+.titleBreak {
+  display: none;
 }
 
 .cardText h3 {
@@ -152,58 +174,263 @@
 
 @media (min-width: 768px) {
   .learning {
-    padding: 48px 0 48px 68px;
+    padding: 68px;
+  }
+
+  .inner {
+    gap: 38px;
   }
 
   .header {
-    padding-right: 68px;
+    padding-right: 0;
+    text-align: center;
   }
 
   .header h2 {
     max-width: none;
-    font-size: 32px;
-  }
-
-  .decor {
-    display: block;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 1;
+    letter-spacing: normal;
+    white-space: nowrap;
   }
 
   .list {
-    padding: 0 68px 8px 0;
+    padding: 0;
     position: static;
     top: auto;
     margin-bottom: 0;
+    margin-left: 0;
+    width: auto;
   }
 
-  .cardDecor {
+  .cardWrap {
+    width: calc((100% - 24px) / 2);
+    scroll-snap-align: start;
+  }
+
+  .decorMobile {
     display: none;
+  }
+
+  .card {
+    justify-content: flex-start;
+    min-height: 248px;
+    padding: 28px 18px;
+  }
+
+  .cardText {
+    gap: 8px;
+  }
+
+  .cardText h3 {
+    letter-spacing: 0.4px;
+  }
+
+  .cardDecor,
+  .mintVector,
+  .sunVector {
+    display: none;
+  }
+
+  .mintVectorTablet {
+    display: block;
+    top: -12px;
+    left: -199px;
+    width: 299px;
+    height: 283px;
+  }
+
+  .illustration {
+    display: block;
+    position: absolute;
+    top: -108px;
+    right: -41px;
+    width: 169px;
+    height: 169px;
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .pagination {
+    margin-top: -14px;
   }
 }
 
 @media (min-width: 1440px) {
   .learning {
-    padding: 68px;
+    padding: 0;
+  }
+
+  .mintVectorTablet {
+    display: none;
   }
 
   .inner {
-    gap: 32px;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    gap: 38px;
+    max-width: 1443px;
+    padding: 86px 72px;
+    background: #fefefe;
   }
 
   .header {
     padding-right: 0;
+    text-align: center;
   }
 
   .header h2 {
+    max-width: none;
+    font-weight: 600;
     font-size: 48px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .pagination {
+    display: none;
+  }
+
+  .gridWrap {
+    width: 100%;
   }
 
   .list {
-    flex-wrap: wrap;
-    padding-right: 0;
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 793px;
+    margin: 0;
+    padding: 0;
     overflow: visible;
   }
 
+
+  .card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    padding: 32px 28px;
+    justify-content: flex-start;
+  }
+
+  /* left column: green card */
+  .list > li:nth-child(1) {
+    top: 7px;
+    left: 28.5px;
+    width: 417px;
+    height: 434px;
+    z-index: 1;
+  }
+
+  .list > li:nth-child(1) .card {
+    justify-content: flex-end;
+  }
+
+  /* top-right card */
+  .list > li:nth-child(2) {
+    top: 35px;
+    left: 852px;
+    width: 447px;
+    height: 260px;
+    z-index: 2;
+  }
+
+  .list > li:nth-child(2) .card {
+    justify-content: center;
+  }
+
+  /* yellow card, below the illustration, overlapped by the middle-right card */
+  .list > li:nth-child(3) {
+    top: 588px;
+    left: 429px;
+    width: 870px;
+    height: 172px;
+    z-index: 5;
+  }
+
+  .list > li:nth-child(3) .card {
+    justify-content: center;
+    box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
+  }
+
+  /* middle-right card, overlaps on top of the illustration and the yellow card */
+  .list > li:nth-child(4) {
+    top: 397px;
+    left: 724.5px;
+    width: 574px;
+    height: 209px;
+    z-index: 6;
+  }
+
+  .list > li:nth-child(4) .card {
+    box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
+  }
+
+  /* left column: white card, directly below the green card, same width */
+  .list > li:nth-child(5) {
+    top: 459px;
+    left: -0.5px;
+    width: 446px;
+    height: 306px;
+    z-index: 4;
+  }
+
+  .cardText {
+    gap: 18px;
+    line-height: 1.21;
+  }
+
+  .cardText h3 {
+    font-size: 24px;
+    letter-spacing: 0.48px;
+  }
+
+  .cardText p {
+    font-size: 20px;
+  }
+
+  .mintVector {
+    display: block;
+    top: -162.39px;
+    left: 58.81px;
+    right: auto;
+    width: 299.39px;
+    height: 299.39px;
+  }
+
+  .sunVector {
+    display: block;
+    top: -45px;
+    left: 729px;
+    right: auto;
+    bottom: auto;
+    width: 246.89px;
+    height: 262px;
+  }
+
+  .illustration {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 414px;
+    right: auto;
+    width: 453px;
+    height: 453px;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .titleBreak {
+    display: inline;
+  }
+
   .cardWrap {
-    width: calc((100% - 48px) / 3);
+    position: absolute;
   }
 }

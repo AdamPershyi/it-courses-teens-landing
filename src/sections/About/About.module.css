@@ -114,21 +114,32 @@
   }
 
   .inner {
-    gap: 45px;
+    gap: 38px;
   }
 
   .content {
-    gap: 24px;
+    gap: 38px;
     align-items: center;
     width: 632px;
   }
 
+  .copy {
+    gap: 24px;
+    align-items: flex-start;
+    text-align: left;
+  }
+
   .copy h2 {
-    max-width: 632px;
+    max-width: 616px;
+    font-size: 36px;
+    letter-spacing: 0.72px;
+    text-align: center;
   }
 
   .copy p {
-    max-width: 632px;
+    max-width: 618px;
+    font-size: 24px;
+    letter-spacing: 0;
   }
 
   .features {
@@ -139,24 +150,60 @@
   }
 
   .feature {
-    width: 118px;
-    min-height: auto;
+    min-height: 123px;
+  }
+
+  .feature:nth-child(1) {
+    width: 114px;
   }
 
   .feature:nth-child(2) {
     order: 3;
+    width: 146px;
   }
 
   .feature:nth-child(3) {
     order: 2;
+    width: 114px;
   }
 
   .feature:nth-child(4) {
     order: 4;
+    width: 149px;
+  }
+
+  .feature img {
+    width: 73px;
+    height: 83px;
+  }
+
+  .feature:nth-child(2) img {
+    width: 85px;
+    height: 80px;
+  }
+
+  .feature:nth-child(3) img {
+    width: 73px;
+    height: 73px;
+  }
+
+  .feature:nth-child(4) img {
+    width: 73px;
+    height: 73px;
+  }
+
+  .feature p {
+    width: 100%;
+    font-size: 19.5px;
   }
 
   .imageWrap {
     width: min(100%, 633px);
+    height: 442px;
+  }
+
+  .image {
+    height: 100%;
   }
 }
 
@@ -168,7 +215,9 @@
 
   .inner {
     flex-direction: row;
+    align-items: flex-start;
     justify-content: space-between;
+    gap: 0;
   }
 
   .content {
@@ -204,10 +253,12 @@
     width: 117px;
   }
 
-  .feature:nth-child(2),
-  .feature:nth-child(3),
+  .feature:nth-child(3) {
+    width: 150px;
+  }
+
   .feature:nth-child(4) {
-    order: 0;
+    width: 153px;
   }
 
   .feature img {
@@ -215,16 +266,35 @@
     height: 86px;
   }
 
-  .feature:nth-child(2) img,
-  .feature:nth-child(4) img {
+  .feature:nth-child(2) img {
     height: 75px;
   }
 
   .feature:nth-child(3) img {
-    height: 68px;
+    width: 87px;
+    height: 83px;
+  }
+
+  .feature:nth-child(4) img {
+    height: 76px;
+  }
+
+  .feature p {
+    font-size: 20px;
+  }
+
+  .feature:nth-child(3) p,
+  .feature:nth-child(4) p {
+    letter-spacing: -0.2px;
   }
 
   .imageWrap {
-    width: 610px;
+    width: 738px;
+    height: 521px;
+  }
+
+  .image {
+    height: 100%;
+    object-fit: cover;
   }
 }
