@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef } from 'react'
 import mintDecor from '@/assets/icons/figma-vector.svg'
+import mintDecorTablet from '@/assets/icons/figma-vector-tablet.svg'
 import sunDecor from '@/assets/icons/figma-vector-1.svg'
 import paginationDots from '@/assets/icons/figma-offer-banner.svg'
 import learningImage from '@/img/how-learning-desktop@2x.png'
@@ -47,12 +48,28 @@ export function LearningProcess() {
     const initialCard = list.children[INITIAL_MOBILE_CARD_INDEX] as
       | HTMLElement
       | undefined
+    if (!initialCard) return
 
-    initialCard?.scrollIntoView({ inline: 'start', block: 'nearest' })
+    const targetScrollLeft =
+      initialCard.offsetLeft - (list.clientWidth - initialCard.clientWidth) / 2
+
+    list.scrollTo({ left: targetScrollLeft })
   }, [])
 
   return (
     <section className={styles.learning} id="learning">
+      <img
+        alt=""
+        className={styles.mintVectorTablet}
+        src={mintDecorTablet}
+      />
+
+      <img
+        alt=""
+        className={styles.decorMobile}
+        src={learningImageMobile}
+      />
+
       <div className={styles.inner}>
         <div className={styles.header}>
           <h2>Як відбувається навчання?</h2>
@@ -108,14 +125,6 @@ export function LearningProcess() {
                     <p>{step.text}</p>
                   </div>
                 </div>
-
-                {step.variant === 'sun' && (
-                  <img
-                    alt=""
-                    className={styles.cardDecor}
-                    src={learningImageMobile}
-                  />
-                )}
               </li>
             ))}
           </ul>
