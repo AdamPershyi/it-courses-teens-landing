@@ -5,6 +5,7 @@ import { About } from '@/sections/About/About'
 import { Directions } from '@/sections/Directions/Directions'
 import { TrialBanner } from '@/sections/TrialBanner/TrialBanner'
 import { LearningProcess } from '@/sections/LearningProcess/LearningProcess'
+import { Certificate } from '@/sections/Certificate/Certificate'
 import { Reviews } from '@/sections/Reviews/Reviews'
 import { Faq } from '@/sections/Faq/Faq'
 import styles from './App.module.css'
@@ -19,6 +20,7 @@ function App() {
         <Directions />
         <TrialBanner />
         <LearningProcess />
+        <Certificate />
         <Reviews />
         <Faq />
       </main>

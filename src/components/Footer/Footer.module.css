@@ -190,14 +190,14 @@
 @media (min-width: 1440px) {
   .footer {
     gap: 0;
-    align-items: flex-start;
+    align-items: center;
     padding: 38px var(--pad-footer-desktop);
   }
 
   .inner {
     width: 1012px;
     max-width: 100%;
-    margin-inline: 0;
+    margin-inline: auto;
     gap: 0;
     justify-content: space-between;
     align-items: flex-start;
