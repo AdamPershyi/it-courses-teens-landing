@@ -19,13 +19,13 @@ export function Footer() {
             </a>
             <a className={styles.contactRow} href="mailto:team@focuslearn.ua">
               <span className={styles.emailIcon}>
-                <img alt="" height={16} src={emailIcon} width={20} />
+                <img alt="" height={24} src={emailIcon} width={24} />
               </span>
               team@focuslearn.ua
             </a>
-          </div>
-          <div className={styles.socialsMobile}>
-            <SocialList />
+            <div className={styles.socialsMobile}>
+              <SocialList />
+            </div>
           </div>
         </div>
 
