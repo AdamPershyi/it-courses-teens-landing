@@ -4,7 +4,7 @@ import { FAQ_ITEMS } from '@/data/faq'
 import styles from './Faq.module.css'
 
 export function Faq() {
-  const [openId, setOpenId] = useState<string | null>(FAQ_ITEMS[0]?.id ?? null)
+  const [openId, setOpenId] = useState<string | null>(null)
 
   const onToggle = (id: string) => {
     setOpenId((current) => (current === id ? null : id))

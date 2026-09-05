@@ -1,4 +1,5 @@
 .footer {
+  overflow: hidden;
   padding: 32px 16px;
   background-color: var(--color-footer-bg);
   color: var(--color-white);
@@ -118,7 +119,7 @@
 }
 
 .socialsMobile {
-  margin-top: 4px;
+  display: block;
 }
 
 .socialsTablet,
@@ -148,10 +149,15 @@
 
   .contactsTitle {
     font-size: 32px;
+    line-height: 1;
   }
 
   .contactsList {
     gap: 24px;
+  }
+
+  .navLink {
+    line-height: 1.75;
   }
 
   .socialsMobile {
@@ -160,10 +166,14 @@
 
   .socialsTablet {
     display: block;
+    width: fit-content;
   }
 
   .socials {
+    flex-wrap: nowrap;
     gap: 24px;
+    width: fit-content;
+    height: 48px;
   }
 
   .socialLink {
@@ -172,13 +182,15 @@
   }
 
   .socialLink img {
-    width: 36px;
-    height: 36px;
+    width: 48px;
+    height: 48px;
   }
 }
 
 @media (min-width: 1440px) {
   .footer {
+    gap: 0;
+    align-items: center;
     padding: 38px var(--pad-footer-desktop);
   }
 
@@ -186,6 +198,9 @@
     width: 1012px;
     max-width: 100%;
     margin-inline: auto;
+    gap: 0;
+    justify-content: space-between;
+    align-items: flex-start;
   }
 
   .socialsTablet {
@@ -194,5 +209,7 @@
 
   .socialsAside {
     display: block;
+    flex-shrink: 0;
+    width: fit-content;
   }
 }

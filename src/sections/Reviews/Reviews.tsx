@@ -1,54 +1,127 @@
-import decoration from '@/assets/icons/figma-vector.svg'
-import starIcon from '@/assets/icons/star.svg'
+import { useEffect, useRef, useState } from 'react'
+import { ReviewCard } from '@/components/ReviewCard/ReviewCard'
+import { REVIEWS, getReviewsForLayout } from '@/data/reviews'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import mintDecorTablet from '@/assets/icons/figma-vector-tablet.svg'
 import styles from './Reviews.module.css'
 
-const STAR_COUNT = 5
-
-const REVIEWS = [
-  {
-    name: 'Анна, 15 років',
-    initial: 'А',
-    text: '«Я давно хотіла навчитися створювати сайти, але боялася, що буде складно. На курсі все пояснюють зрозуміло, а вже за кілька тижнів я зробила свій перший дизайн у Figma.»',
-  },
-  {
-    name: 'Максим, 16 років',
-    initial: 'М',
-    text: '«Найбільше подобається, що майже кожне заняття — це практика. Ми створюємо власні проєкти, а викладач завжди допомагає, якщо щось не виходить.»',
-  },
-  {
-    name: 'Артем, 14 років',
-    initial: 'А',
-    text: '«Я навчився монтувати відео для TikTok і YouTube та вже зробив кілька власних роликів. Дуже круто, що можна одразу застосовувати знання на практиці.»',
-  },
-]
+const SWIPE_THRESHOLD = 50
+const DEFAULT_CARD_INDEX = Math.max(
+  0,
+  REVIEWS.findIndex((review) => review.id === 'maksym'),
+)
 
 export function Reviews() {
+  const isDesktop = useMediaQuery('(min-width: 1440px)')
+  const isTablet = useMediaQuery('(min-width: 768px)')
+  const reviews = isDesktop ? REVIEWS : getReviewsForLayout(isTablet)
+  const slidesPerView = isTablet ? 2 : 1
+  const cardWidth = isTablet ? 304 : 330
+  const cardGap = isTablet ? 24 : 16
+  const slideStep = cardWidth + cardGap
+  const pageCount = Math.ceil(reviews.length / slidesPerView)
+
+  const [leadIndex, setLeadIndex] = useState(isTablet ? 0 : DEFAULT_CARD_INDEX)
+  const [dragOffset, setDragOffset] = useState(0)
+  const [isDragging, setIsDragging] = useState(false)
+  const draggingRef = useRef(false)
+  const startXRef = useRef(0)
+
+  useEffect(() => {
+    setLeadIndex(isTablet ? 0 : DEFAULT_CARD_INDEX)
+    setDragOffset(0)
+    setIsDragging(false)
+    draggingRef.current = false
+  }, [isTablet, isDesktop])
+
+  const pageIndex = Math.floor(leadIndex / slidesPerView)
+
+  const goToPage = (page: number) => {
+    const nextPage = Math.max(0, Math.min(pageCount - 1, page))
+    setLeadIndex(nextPage * slidesPerView)
+  }
+
+  const onPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    draggingRef.current = true
+    startXRef.current = event.clientX
+    setIsDragging(true)
+    event.currentTarget.setPointerCapture(event.pointerId)
+  }
+
+  const onPointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (!draggingRef.current) {
+      return
+    }
+
+    setDragOffset(event.clientX - startXRef.current)
+  }
+
+  const onPointerUp = () => {
+    if (!draggingRef.current) {
+      return
+    }
+
+    if (dragOffset < -SWIPE_THRESHOLD) {
+      goToPage(pageIndex + 1)
+    } else if (dragOffset > SWIPE_THRESHOLD) {
+      goToPage(pageIndex - 1)
+    }
+
+    draggingRef.current = false
+    setDragOffset(0)
+    setIsDragging(false)
+  }
+
+  const translateX = -leadIndex * slideStep + dragOffset
+  const cards = reviews.map((review) => (
+    <ReviewCard key={review.id} review={review} />
+  ))
+
   return (
     <section className={styles.section} id="reviews">
-      <img alt="" className={styles.decoration} src={decoration} />
+      <img
+        alt=""
+        aria-hidden
+        className={styles.decor}
+        src={mintDecorTablet}
+      />
       <h2 className={styles.title}>Відгуки</h2>
-
-      <ul className={styles.list}>
-        {REVIEWS.map((review) => (
-          <li className={styles.card} key={review.name}>
-            <p className={styles.text}>{review.text}</p>
-
-            <div className={styles.meta}>
-              <span aria-hidden className={styles.avatar}>
-                {review.initial}
-              </span>
-              <div className={styles.nameStars}>
-                <p className={styles.name}>{review.name}</p>
-                <div className={styles.stars}>
-                  {Array.from({ length: STAR_COUNT }).map((_, index) => (
-                    <img alt="" key={index} src={starIcon} />
-                  ))}
-                </div>
-              </div>
+      {isDesktop ? (
+        <div className={styles.list}>{cards}</div>
+      ) : (
+        <>
+          <div
+            className={styles.viewport}
+            onPointerCancel={onPointerUp}
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={onPointerUp}
+          >
+            <div
+              className={
+                isDragging ? `${styles.track} ${styles.trackDragging}` : styles.track
+              }
+              style={{ transform: `translateX(${translateX}px)` }}
+            >
+              {cards}
             </div>
-          </li>
-        ))}
-      </ul>
+          </div>
+          <div className={styles.dots}>
+            {Array.from({ length: pageCount }, (_, page) => (
+              <button
+                aria-current={page === pageIndex}
+                aria-label={`Слайд ${page + 1}`}
+                className={
+                  page === pageIndex ? `${styles.dot} ${styles.dotActive}` : styles.dot
+                }
+                key={page}
+                onClick={() => goToPage(page)}
+                type="button"
+              />
+            ))}
+          </div>
+        </>
+      )}
     </section>
   )
 }
