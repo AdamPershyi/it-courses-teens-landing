@@ -73,6 +73,7 @@
 
   .inner p {
     width: min(100%, 609px);
+    font-size: 24px;
   }
 }
 

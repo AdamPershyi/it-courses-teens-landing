@@ -1,7 +1,7 @@
 .learning {
   position: relative;
   overflow: hidden;
-  padding: 29px 0 32px 16px;
+  padding: 32px 0 32px 16px;
   background-color: #fefefe;
   color: #484c56;
 }
@@ -20,12 +20,12 @@
 }
 
 .header h2 {
-  max-width: 220px;
   margin: 0;
   color: #2a2d34;
   font-weight: 600;
   font-size: 24px;
   line-height: 1;
+  white-space: nowrap;
 }
 
 
@@ -91,9 +91,9 @@
 .decorMobile {
   position: absolute;
   top: 20px;
-  right: -49px;
-  width: 128px;
-  height: 128px;
+  left: 281px;
+  width: 120px;
+  height: 120px;
   object-fit: contain;
   pointer-events: none;
   z-index: 2;
@@ -172,6 +172,27 @@
   margin-inline: auto;
 }
 
+@media (max-width: 767.98px) {
+  .gridWrap {
+    padding-top: 24px;
+  }
+
+  .cardWrap {
+    width: 330px;
+  }
+
+  .card {
+    padding-inline: 18px;
+  }
+
+  .sunVector {
+    top: -107px;
+    right: -92px;
+    width: 200px;
+    height: 212px;
+  }
+}
+
 @media (min-width: 768px) {
   .learning {
     padding: 68px;
@@ -214,7 +235,7 @@
   }
 
   .card {
-    justify-content: flex-start;
+    justify-content: flex-end;
     min-height: 248px;
     padding: 28px 18px;
   }
@@ -245,7 +266,7 @@
     display: block;
     position: absolute;
     top: -108px;
-    right: -41px;
+    right: -40px;
     width: 169px;
     height: 169px;
     object-fit: contain;
@@ -255,6 +276,34 @@
 
   .pagination {
     margin-top: -14px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1439.98px) {
+  .mintVectorTablet {
+    z-index: 1;
+    top: -7.9248px;
+    left: -194.0964px;
+    width: 289.2526px;
+    height: 274.8779px;
+  }
+
+  .list > li:nth-child(1) .cardText,
+  .list > li:nth-child(2) .cardText {
+    width: min(100%, 266px);
+    align-self: center;
+  }
+
+  .list > li:nth-child(1) .cardText h3 {
+    width: min(100%, 256px);
+    align-self: center;
+    min-height: 53px;
+    line-height: 1;
+  }
+
+  .list > li:nth-child(2) .cardText h3 {
+    min-height: 71px;
+    line-height: 1.21;
   }
 }
 
@@ -332,6 +381,10 @@
     justify-content: flex-end;
   }
 
+  .list > li:nth-child(1) .cardText p {
+    width: 333px;
+  }
+
   /* top-right card */
   .list > li:nth-child(2) {
     top: 35px;
@@ -343,6 +396,10 @@
 
   .list > li:nth-child(2) .card {
     justify-content: center;
+  }
+
+  .list > li:nth-child(2) .cardText p {
+    width: 380px;
   }
 
   /* yellow card, below the illustration, overlapped by the middle-right card */
@@ -357,6 +414,10 @@
   .list > li:nth-child(3) .card {
     justify-content: center;
     box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
+  }
+
+  .list > li:nth-child(3) .cardText p {
+    width: 642px;
   }
 
   /* middle-right card, overlaps on top of the illustration and the yellow card */
