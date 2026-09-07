@@ -1,8 +1,7 @@
-import { useLayoutEffect, useRef } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import mintDecor from '@/assets/icons/figma-vector.svg'
 import mintDecorTablet from '@/assets/icons/figma-vector-tablet.svg'
 import sunDecor from '@/assets/icons/figma-vector-1.svg'
-import paginationDots from '@/assets/icons/figma-offer-banner.svg'
 import learningImage from '@/img/how-learning-desktop@2x.png'
 import learningImageMobile from '@/img/how-learning-mobile@2x.png'
 import styles from './LearningProcess.module.css'
@@ -40,6 +39,41 @@ const STEPS = [
 
 export function LearningProcess() {
   const listRef = useRef<HTMLUListElement>(null)
+  const [activePage, setActivePage] = useState(0)
+  const [pageCount, setPageCount] = useState<number>(STEPS.length)
+
+  const scrollToPage = (index: number) => {
+    const list = listRef.current
+    const card = list?.children[index] as HTMLElement | undefined
+    if (!list || !card) return
+    const padding = parseFloat(getComputedStyle(list).paddingLeft)
+    list.scrollTo({
+      left: card.offsetLeft - padding,
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        ? 'instant'
+        : 'smooth',
+    })
+  }
+
+  const updatePage = () => {
+    const list = listRef.current
+    if (!list) return
+    const first = list.children[0] as HTMLElement
+    const second = list.children[1] as HTMLElement
+    const step = second.offsetLeft - first.offsetLeft
+    if (step <= 0) return
+    const count = Math.round((list.scrollWidth - list.clientWidth) / step) + 1
+    setPageCount(count)
+    setActivePage(Math.min(count - 1, Math.round(list.scrollLeft / step)))
+  }
+
+  useLayoutEffect(() => {
+    const list = listRef.current
+    if (!list) return
+    const observer = new ResizeObserver(updatePage)
+    observer.observe(list)
+    return () => observer.disconnect()
+  }, [])
 
   useLayoutEffect(() => {
     const list = listRef.current
@@ -76,7 +110,7 @@ export function LearningProcess() {
         </div>
 
         <div className={styles.gridWrap}>
-          <ul className={styles.list} ref={listRef}>
+          <ul className={styles.list} ref={listRef} id="learning-cards" onScroll={updatePage}>
             {STEPS.map((step) => (
               <li className={styles.cardWrap} key={step.title}>
                 <div className={`${styles.card} ${styles[step.variant]}`}>
@@ -136,7 +170,19 @@ export function LearningProcess() {
           />
         </div>
 
-        <img alt="" className={styles.pagination} src={paginationDots} />
+        <div className={styles.pagination} aria-label="Слайди навчання">
+          {Array.from({ length: pageCount }, (_, index) => (
+            <button
+              key={index}
+              type="button"
+              className={styles.pageDot}
+              aria-label={`Показати слайд ${index + 1}`}
+              aria-controls="learning-cards"
+              aria-current={activePage === index ? 'true' : undefined}
+              onClick={() => scrollToPage(index)}
+            />
+          ))}
+        </div>
       </div>
     </section>
   )

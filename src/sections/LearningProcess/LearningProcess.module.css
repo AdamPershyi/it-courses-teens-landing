@@ -166,10 +166,40 @@
 }
 
 .pagination {
-  display: block;
-  width: 106px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
   height: 13px;
   margin-inline: auto;
+}
+
+.pageDot {
+  position: relative;
+  flex: 0 0 auto;
+  width: 13px;
+  height: 13px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: #b6b7bb;
+  cursor: pointer;
+}
+
+.pageDot::before {
+  content: '';
+  position: absolute;
+  inset: -8px -6px;
+}
+
+.pageDot[aria-current='true'] {
+  width: 28px;
+  background: #484c56;
+}
+
+.pageDot:focus-visible {
+  outline: 2px solid #484c56;
+  outline-offset: 4px;
 }
 
 @media (max-width: 767.98px) {
@@ -178,7 +208,12 @@
   }
 
   .cardWrap {
-    width: 330px;
+    width: min(330px, calc(100vw - 32px));
+    scroll-snap-align: start;
+  }
+
+  .list {
+    scroll-padding-inline: 16px;
   }
 
   .card {
@@ -280,6 +315,10 @@
 }
 
 @media (min-width: 768px) and (max-width: 1439.98px) {
+  .card {
+    height: 100%;
+  }
+
   .mintVectorTablet {
     z-index: 1;
     top: -7.9248px;

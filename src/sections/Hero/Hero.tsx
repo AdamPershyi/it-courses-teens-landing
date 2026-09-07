@@ -1,9 +1,17 @@
 import { Button } from '@/components/Button/Button'
 import styles from './Hero.module.css'
+import heroMobile from '@/img/image-hero-mob.png'
+import heroTablet from '@/img/image-hero-tab.png'
+import heroDesktop from '@/img/image-hero-desc.png'
 
 export function Hero() {
   return (
     <section className={styles.hero} id="hero">
+      <picture className={styles.photo}>
+        <source media="(min-width: 1440px)" srcSet={heroDesktop} />
+        <source media="(min-width: 768px)" srcSet={heroTablet} />
+        <img src={heroMobile} alt="" fetchPriority="high" />
+      </picture>
       <div aria-hidden className={styles.overlay} />
 
       <div className={styles.inner}>
