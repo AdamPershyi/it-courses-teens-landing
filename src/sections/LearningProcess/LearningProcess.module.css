@@ -208,12 +208,15 @@
   }
 
   .cardWrap {
-    width: min(330px, calc(100vw - 32px));
+    width: 100%;
     scroll-snap-align: start;
   }
 
   .list {
-    scroll-padding-inline: 16px;
+    width: min(330px, calc(100vw - 32px));
+    margin-left: max(0px, calc((100vw - 362px) / 2));
+    padding-inline: 0;
+    scroll-padding-inline: 0;
   }
 
   .card {
