@@ -2,10 +2,19 @@
   position: relative;
   overflow: hidden;
   min-height: 679px;
-  background-image: url('../../img/image-hero-mob.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .overlay {
@@ -104,7 +113,6 @@
 @media (min-width: 768px) {
   .hero {
     min-height: 803px;
-    background-image: url('../../img/image-hero-tab.png');
   }
 
   .inner {
@@ -161,7 +169,6 @@
 @media (min-width: 1440px) {
   .hero {
     min-height: 828px;
-    background-image: url('../../img/image-hero-desc.png');
   }
 
   .inner {
@@ -204,12 +211,13 @@
     width: 439px;
     max-width: none;
     padding-top: 89px;
+    margin-right: -5px;
   }
 
   .aside p {
-    width: auto;
+    width: 414px;
     font-size: 28px;
-    line-height: 1.2;
+    line-height: 28px;
     letter-spacing: -0.02em;
   }
 

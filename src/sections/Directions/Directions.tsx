@@ -1,4 +1,5 @@
-import { Button } from '@/components/Button/Button'
+import { useState } from 'react'
+import buttonStyles from '@/components/Button/Button.module.css'
 import uiuxImage from '@/img/direction-uiux-web-design-desktop@2x.png'
 import graphicImage from '@/img/direction-graphic-design-desktop@2x.png'
 import programmingImage from '@/img/direction-programming-desktop@2x.png'
@@ -41,6 +42,8 @@ const COURSES = [
 ]
 
 export function Directions() {
+  const [expanded, setExpanded] = useState(false)
+
   return (
     <section className={styles.directions} id="directions">
       <div className={styles.inner}>
@@ -52,7 +55,7 @@ export function Directions() {
           </p>
         </div>
 
-        <ul className={styles.list}>
+        <ul className={styles.list} id="direction-courses" data-expanded={expanded}>
           {COURSES.map((course) => (
             <li className={styles.card} key={course.title}>
               <div className={styles.imageBox}>
@@ -66,9 +69,15 @@ export function Directions() {
           ))}
         </ul>
 
-        <Button className={styles.moreButton} href="#contacts">
-          Подивитись більше курсів
-        </Button>
+        <button
+          type="button"
+          className={`${buttonStyles.button} ${buttonStyles.outline} ${styles.moreButton}`}
+          aria-expanded={expanded}
+          aria-controls="direction-courses"
+          onClick={() => setExpanded((current) => !current)}
+        >
+          {expanded ? 'Згорнути курси' : 'Подивитись більше курсів'}
+        </button>
       </div>
     </section>
   )

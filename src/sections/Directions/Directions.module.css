@@ -121,6 +121,7 @@
 }
 
 .moreButton {
+  cursor: pointer;
   width: min(100%, 328px);
   height: 44px;
   padding: 8px 18px;
@@ -136,6 +137,10 @@
 }
 
 @media (max-width: 767.98px) {
+  .list[data-expanded='false'] .card:nth-child(n + 5) {
+    display: none;
+  }
+
   .heading p {
     text-align: left;
   }
@@ -168,9 +173,27 @@
     order: 4;
   }
 
-  .card:nth-child(5),
+  .card:nth-child(5) {
+    order: 5;
+  }
+
   .card:nth-child(6) {
-    display: none;
+    order: 6;
+  }
+
+  .card:nth-child(5) .imageBox {
+    width: min(100%, 220px);
+    height: 206px;
+  }
+
+  .card:nth-child(6) .imageBox {
+    width: min(100%, 250px);
+    height: 209px;
+  }
+
+  .card:nth-child(5) .cardText,
+  .card:nth-child(6) .cardText {
+    gap: 8px;
   }
 }
 
