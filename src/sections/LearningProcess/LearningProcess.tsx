@@ -98,18 +98,17 @@ export function LearningProcess() {
         src={mintDecorTablet}
       />
 
-      <img
-        alt=""
-        className={styles.decorMobile}
-        src={learningImageMobile}
-      />
-
       <div className={styles.inner}>
         <div className={styles.header}>
           <h2>Як відбувається навчання?</h2>
         </div>
 
         <div className={styles.gridWrap}>
+          <img
+            alt=""
+            className={styles.decorMobile}
+            src={learningImageMobile}
+          />
           <ul className={styles.list} ref={listRef} id="learning-cards" onScroll={updatePage}>
             {STEPS.map((step) => (
               <li className={styles.cardWrap} key={step.title}>

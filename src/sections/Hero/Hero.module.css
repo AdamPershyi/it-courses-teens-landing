@@ -20,14 +20,8 @@
 .overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.35);
+  background-color: transparent;
   pointer-events: none;
-}
-
-@media (max-width: 767px) {
-  .overlay {
-    background-color: transparent;
-  }
 }
 
 .inner {
@@ -54,11 +48,9 @@
   align-items: center;
   padding: 6px 12px;
   border-radius: var(--radius-pill);
-  background-image: linear-gradient(
-    172.8427615157435deg,
-    rgba(190, 194, 197, 0.18) 14.202%,
-    rgba(190, 194, 197, 0.075) 90.745%
-  );
+  background-image: linear-gradient(172.8427615157435deg,
+      rgba(190, 194, 197, 0.18) 14.202%,
+      rgba(190, 194, 197, 0.075) 90.745%);
   backdrop-filter: blur(20px);
   color: var(--color-white);
   font-weight: 600;
@@ -104,7 +96,7 @@
   bottom: 18px;
   left: 16px;
   box-sizing: border-box;
-  height: auto;
+  height: 44px;
   padding: 8px 42px;
   font-size: 16px;
   letter-spacing: normal;
@@ -129,11 +121,9 @@
   .badge {
     padding: 8px 18px;
     font-size: 20px;
-    background-image: linear-gradient(
-      174.74deg,
-      rgba(190, 194, 197, 0.18) 14.2%,
-      rgba(190, 194, 197, 0.075) 90.75%
-    );
+    background-image: linear-gradient(174.74deg,
+        rgba(190, 194, 197, 0.18) 14.2%,
+        rgba(190, 194, 197, 0.075) 90.75%);
   }
 
   .title {
@@ -155,6 +145,7 @@
   .aside p {
     width: auto;
     font-size: 20px;
+    line-height: 28px;
     letter-spacing: -0.02em;
   }
 
@@ -176,7 +167,7 @@
     align-items: flex-start;
     justify-content: space-between;
     min-height: 828px;
-    padding: 132px 74px 0;
+    padding: 132px 74px 0 89px;
     gap: 24px;
   }
 
@@ -188,18 +179,16 @@
   .badge {
     padding: 8px 18px;
     font-size: 24px;
-    background-image: linear-gradient(
-      174.74deg,
-      rgba(190, 194, 197, 0.18) 14.2%,
-      rgba(190, 194, 197, 0.075) 90.75%
-    );
+    background-image: linear-gradient(174.74deg,
+        rgba(190, 194, 197, 0.18) 14.2%,
+        rgba(190, 194, 197, 0.075) 90.75%);
   }
 
   .title {
-    width: auto;
+    width: 644px;
     font-size: 64px;
     line-height: 78px;
-    letter-spacing: -0.02em;
+    letter-spacing: normal;
   }
 
   .titleLine {
